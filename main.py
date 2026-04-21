@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import requests
 from bs4 import BeautifulSoup
-from transformers import pipeline
+from transformers import AutoTokenizer, AutoModelForSeq2SeqLM          
 
 app = FastAPI()
 
@@ -42,11 +42,27 @@ async def summarize_link(request: LinkRequest):
         
         if len(input_text) < 100:
             return {"summary": "Content too short to summarize."}
-
-        # 3. Summarize
-        summary = summarizer(input_text, max_length=130, min_length=30, do_sample=False)
         
-        return {"summary": summary[0]['summary_text']}
+        inputs = tokenizer(
+             input_text,
+             return_tensors="pt",
+             max_length=1024,
+             truncation=True
+        )
+
+        summary_ids = model.generate(
+            inputs["input_ids"],
+            max_length=130,
+            min_length=30,
+            length_penalty=2.0,
+            num_beams=4,
+            early_stopping=True
+        )
+    
+        # 3. Summarize
+        summary_text = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
+        
+        return {"summary": summary_text}
 
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
