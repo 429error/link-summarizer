@@ -5,8 +5,17 @@ import requests
 from bs4 import BeautifulSoup
 # We use AutoTokenizer and AutoModel instead of 'pipeline' for better stability
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+
 
 app = FastAPI()
+
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+@app.get("/")
+async def read_index():
+    return FileResponse('static/index.html')
 
 # --- 1. CORS Setup (Crucial for the Frontend to work) ---
 app.add_middleware(
