@@ -30,6 +30,9 @@ tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
 print("Model loaded successfully!")
 
+@app.get("/")
+async def home():
+    return {"message": "The summarizer API is up and running! Use the HTML file or /docs to test it"}
 
 class LinkRequest(BaseModel):
     url: str
