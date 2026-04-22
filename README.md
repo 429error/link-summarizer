@@ -1,7 +1,7 @@
 # AI Link Summarizer 
 A full-stack web application that extracts text from any provided URL and generates a concise summary using Natural Language Processing (NLP).
 
-## Demo
+## Preview
 <img width="1092" height="539" alt="Ai_link" src="https://github.com/user-attachments/assets/91e841b0-9075-4b63-80cb-c87e7a7f86e8" />
 
 ##  Features
