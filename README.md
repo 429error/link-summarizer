@@ -8,7 +8,7 @@ A full-stack web application that extracts text from any provided URL and genera
 - **Modern Backend:** Built with FastAPI (Python 3.13+) for high-performance asynchronous API handling.
 - **Clean UI:** A minimalist, responsive frontend for easy user interaction.
 
-## 🛠️ Tech Stack
+##  Tech Stack
 - **Frontend:** HTML5, CSS3, JavaScript (Fetch API)
 - **Backend:** [FastAPI](https://fastapi.tiangolo.com/)
 - **Machine Learning:** [Hugging Face Transformers](https://huggingface.co/docs/transformers/index), PyTorch
@@ -39,17 +39,20 @@ A full-stack web application that extracts text from any provided URL and genera
     pip install fastapi uvicorn requests beautifulsoup4 transformers torch sentencepiece protobuf
 
 Running the Application
+
 1. Start the server:
 
     ```bash
     uvicorn main:app --reload
    
 2. Access the UI:
+
 Open your browser and navigate to http://127.0.0.1:8000.
 
-3. First Run Note: The application will download the AI model (~1.2GB) on the first startup. Please wait until you see "Model loaded successfully!" in the terminal.
+4. First Run Note: The application will download the AI model (~1.2GB) on the first startup. Please wait until you see "Model loaded successfully!" in the terminal.
 
 ## How it Works
+
 Request: The user submits a URL via the web interface.
 
 Extraction: The backend fetches the HTML, filters for paragraph tags (<p>), and cleans the text.
